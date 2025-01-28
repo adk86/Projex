@@ -1,2 +1,2 @@
-# Projexs
+# Projex
 Projects I have made 
