@@ -2,6 +2,7 @@
 #include <iostream>
 #include <fstream>
 #include <algorithm>
+#include <iomanip>
 
 using namespace std;
 
@@ -9,7 +10,26 @@ void ExpenseTracker::addExpense(const string& category, double amount, const str
     expenses.emplace_back(category, amount, date);
     cout << "Expense added successfully.\n";
 }
+void ExpenseTracker::generateReport() const {
+    map<string, double> categoryTotals;
+    map<string, double> monthlyTotals;
 
+    for (const auto& expense : expenses) {
+        categoryTotals[expense.category] += expense.amount;
+        string month = expense.date.substr(0, 7); // Extract YYYY-MM
+        monthlyTotals[month] += expense.amount;
+    }
+
+    cout << "\nCategory-wise Expense Report:\n";
+    for (const auto& [category, total] : categoryTotals) {
+        cout << " - " << category << ": $" << fixed << setprecision(2) << total << '\n';
+    }
+
+    cout << "\nMonthly Expense Report:\n";
+    for (const auto& [month, total] : monthlyTotals) {
+        cout << " - " << month << ": $" << fixed << setprecision(2) << total << '\n';
+    }
+}
 void ExpenseTracker::viewExpensesSortedByDate() const {
     auto sortedExpenses = expenses;
     sort(sortedExpenses.begin(), sortedExpenses.end(),

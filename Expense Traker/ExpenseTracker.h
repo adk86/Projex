@@ -3,11 +3,12 @@
 
 #include <string>
 #include <vector>
+#include <map>
 
 struct Expense {
     std::string category;
     double amount;
-    std::string date; 
+    std::string date; // Format: YYYY-MM-DD
 
     Expense(const std::string& cat, double amt, const std::string& dt)
         : category(cat), amount(amt), date(dt) {}
@@ -22,8 +23,9 @@ public:
     void viewExpensesSortedByDate() const;
     void viewExpensesSortedByAmount() const;
     void viewExpensesByCategory(const std::string& category) const;
+    void generateReport() const;
     void saveToFile(const std::string& filename) const;
     void loadFromFile(const std::string& filename);
 };
 
-#endif 
+#endif
