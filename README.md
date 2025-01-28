@@ -1,7 +1,7 @@
 # Projex
 Projects I have made 
 
-How they Works:
+How they Work:
 
 -Tic-Tac-toe Game-
 
